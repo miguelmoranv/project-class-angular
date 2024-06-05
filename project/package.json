@@ -26,6 +26,10 @@
     "save": "^2.9.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "@babel/eslint-parser": "^7.5.4"    
+    "@babel/eslint-parser": "^7.5.4",
+    "nodemon": "^2.0.22"  
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
