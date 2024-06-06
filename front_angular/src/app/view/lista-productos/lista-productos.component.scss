@@ -1,7 +1,9 @@
 .table-container {
     margin: 0 auto; // Esto centra horizontalmente el contenedor
     width: 80%; // Ancho deseado de la tabla
-    margin-left: 20%; // Margen a la izquierda
+    display: flex;
+  justify-content: center;
+  align-items: center;
   }
   
   .product-table {
