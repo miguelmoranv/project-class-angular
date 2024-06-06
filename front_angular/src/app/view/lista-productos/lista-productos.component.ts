@@ -7,26 +7,28 @@ import { ProductoService } from '../../service/producto.service';
   templateUrl: './lista-productos.component.html',
   styleUrls: ['./lista-productos.component.scss']
 })
-export class ListaProductosComponent implements OnInit{
-  ListaProductos:Producto[]=[];
+export class ListaProductosComponent implements OnInit {
+  ListaProductos: Producto[] = [];
+  isLoading = true; 
 
-  constructor(private productService:ProductoService){}
+  constructor(private productService: ProductoService) {}
 
-ngOnInit(): void {
-  this.getProduct()
-}
+  ngOnInit(): void {
+    this.getProduct();
+  }
 
-
-  async getProduct(){
-    try{
+  async getProduct() {
+    try {
       this.productService.getProducts()
-      .subscribe(item=>this.ListaProductos=item);
-      console.log(this.ListaProductos);
-    }
-    catch(error){
+        .subscribe(item => {
+          setTimeout(() => {
+            this.ListaProductos = item;
+            this.isLoading = false; 
+          }, 1000); 
+        });
+    } catch (error) {
       console.log(error);
-
+      this.isLoading = false; 
     }
+  }
 }
-}
-
