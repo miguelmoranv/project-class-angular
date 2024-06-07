@@ -14,15 +14,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ListaProductosComponent } from './view/lista-productos/lista-productos.component';
+import { ListaProductos } from './view/lista-productos/lista-productos.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormProductoComponent } from './view/form-producto/form-producto.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
-    ListaProductosComponent
+    ListaProductos,
+    FormProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -37,8 +40,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    MatProgressSpinnerModule,
     HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
