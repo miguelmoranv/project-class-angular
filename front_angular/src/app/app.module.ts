@@ -17,7 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ListaProductos } from './view/lista-productos/lista-productos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FormProductoComponent } from './view/form-producto/form-producto.component';
+import { ProductFormComponent } from './view/form-producto/form-producto.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { FormProductoComponent } from './view/form-producto/form-producto.compon
     AppComponent,
     SideNavComponent,
     ListaProductos,
-    FormProductoComponent
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +42,8 @@ import { FormProductoComponent } from './view/form-producto/form-producto.compon
     MatToolbarModule,
     MatListModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
