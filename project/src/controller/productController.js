@@ -51,7 +51,7 @@ export const deleteProduct = async (req, res, next) => {
    
     try {
     
-        const product = await Product.findById(req.params.id);
+        const product = await Product.findById(req.params._id);
 
         if (!product) {
             return res.status(404).send("Producto no encontrado");

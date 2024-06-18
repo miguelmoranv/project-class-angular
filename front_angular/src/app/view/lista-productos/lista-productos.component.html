@@ -35,7 +35,7 @@
     <th mat-header-cell *matHeaderCellDef>Acciones</th>
     <td mat-cell *matCellDef="let element">
       <button mat-icon-button (click)="openDialog(element)"><mat-icon>edit</mat-icon></button>
-      <button mat-icon-button (click)="deleteProduct(element)"><mat-icon>delete</mat-icon></button>
+      <button mat-icon-button (click)="openDeleteDialog(element)"><mat-icon>delete</mat-icon></button>
     </td>
   </ng-container>
 
@@ -46,3 +46,13 @@
     <td class="mat-cell" colspan="6">No data matching the filter "{{ input.value }}"</td>
   </tr>
 </table>
+
+<!-- Confirmation Dialog Template -->
+<ng-template #deleteDialog let-dialogRef="dialogRef" let-data="data">
+  <h1 mat-dialog-title>Confirmar Eliminación</h1>
+  <div mat-dialog-content>¿Está seguro de que desea eliminar este producto?</div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close(false)">Cancelar</button>
+    <button mat-button (click)="dialogRef.close(true)">Eliminar</button>
+  </div>
+</ng-template>

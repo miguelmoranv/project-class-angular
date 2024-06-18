@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductoService } from '../../service/producto.service';
-import { Producto } from '../../model/producto';
+import { Producto } from '../../model/Producto';
 import { ProductFormComponent } from '../form-producto/form-producto.component';
 
 @Component({
@@ -13,6 +13,7 @@ import { ProductFormComponent } from '../form-producto/form-producto.component';
 export class ListaProductos implements OnInit {
   ListaProductos!: MatTableDataSource<Producto>;
   columnsHeader = ["date", "name", "price", "amount", "status", "opciones"];
+  @ViewChild('deleteDialog') deleteDialog!: TemplateRef<any>;
 
   constructor(
     private productoService: ProductoService,
@@ -36,12 +37,29 @@ export class ListaProductos implements OnInit {
     });
   }
 
-  deleteProduct(producto: Producto): void {
-    if (confirm(`Are you sure you want to delete ${producto.name}?`)) {
-      this.productoService.deleteProduct(producto.id).subscribe(() => {
-        this.productListMethod(); // Refresh the list after deletion
-      });
+  openDeleteDialog(producto: Producto): void {
+    const dialogRef = this.dialog.open(this.deleteDialog, {
+      width: '250px',
+      data: producto
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteProduct(producto._id);
+      }
+    });
+  }
+
+  deleteProduct(id: string): void {
+    if (!id) {
+      console.error('Producto ID is undefined');
+      return;
     }
+
+    this.productoService.deleteProduct(id).subscribe(
+      () => this.productListMethod(), // Refresh the list after deletion
+      error => console.error('Error deleting product', error)
+    );
   }
 
   productListMethod(): void {

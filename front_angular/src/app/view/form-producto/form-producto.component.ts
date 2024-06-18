@@ -22,14 +22,14 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    if (this.data && this.data.id) {
+    if (this.data && this.data._id) {
       this.isEditMode = true;
     }
   }
 
   initForm(): void {
     this.formGroup = this.formBuilder.group({
-      id: [this.data.id],
+      id: [this.data._id],
       name: [this.data.name, Validators.required],
       code: [this.data.code, Validators.required],
       category: [this.data.category, Validators.required],

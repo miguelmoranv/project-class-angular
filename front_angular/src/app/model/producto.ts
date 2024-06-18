@@ -1,5 +1,5 @@
-export interface Producto {
-    id: string;
+export interface Producto{
+    _id: string;
     code: string;
     name: string;
     category: string;
@@ -9,5 +9,4 @@ export interface Producto {
     status: boolean;
     creationDate: Date;
     deleteDate: Date;
-  }
-  
+}
