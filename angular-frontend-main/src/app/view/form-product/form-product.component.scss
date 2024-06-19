@@ -1,0 +1,29 @@
+/* Estilos para los títulos de diálogo */
+.dialog-title-add {
+    color: #2196f3; /* Color azul */
+    font-size: 24px; /* Tamaño de fuente */
+  }
+  
+  .dialog-title-edit {
+    color: #4caf50; /* Color verde */
+    font-size: 24px; /* Tamaño de fuente */
+  }
+  
+  /* Estilos adicionales */
+  .example-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .mat-form-field {
+    margin-right: 12px;
+    margin-bottom: 12px;
+    width: calc(50% - 12px);
+  }
+  
+  @media (max-width: 600px) {
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+  

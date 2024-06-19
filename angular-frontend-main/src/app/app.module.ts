@@ -25,6 +25,7 @@ import { UserFormComponent } from './view/user-form/user-form.component';
 import { AddUserComponent } from './view/add-user/add-user.component';
 import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.component';
 import { MatCardModule } from '@angular/material/card';
+import { LoginComponent } from './view/login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatCardModule } from '@angular/material/card';
     UserListComponent,
     UserFormComponent,
     AddUserComponent,
-    EditUserDialogComponent
+    EditUserDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
