@@ -1,4 +1,6 @@
-import User from '../model/userModel.js';
+import User from '../model/userModel.js'
+import bcyptjs from 'bcryptjs'
+import { createJWT } from '../utils/jwt.js';
 
 export const createUser = async (req, res) => {
     try {
@@ -18,6 +20,7 @@ export const createUser = async (req, res) => {
         await user.save();
         res.status(201).send(user);
     } catch (error) {
+        console.log(error)
         res.status(400).send(error);
     }
 };
@@ -26,7 +29,7 @@ export const login=async (req, res)=>{
     try{
         const userFind= await User.findOne({ username });
         if(!userFind)
-            res.status(400).send({message:"Credenciales incorrectas"});
+            res.status(400).send("Credenciales incorrectas");
  
         const isMatch= await bcyptjs.compare(password,userFind.password);
  
@@ -42,38 +45,70 @@ export const login=async (req, res)=>{
             status:userFind.status
         });
       res.cookie('token',token)
-        res.json({message:"User Login."}).send('token',token);
+        res.json({message:"User Login.",token:token});
     }catch (error){
-       res.send({message:error.message});
+        console.log(error)
+      // res.send({message:error.message});
     }
  
  }
 export const updateUser = async (req, res) => {
-    const updates = Object.keys(req.body);
-    const allowedUpdates = ['username', 'email', 'phone', 'password'];
-    const isValidOperation = updates.every(update => allowedUpdates.includes(update));
+        try {
+            const { id,name,lastName, email,phone,password } = req.body;
+            const user = await User.findById(id);
+    
+            if (!user) {
+                return res.status(400).send("Usuario no encontrado");
+            }
+            const passwordHash= await bcyptjs.hash(password,10);
 
-    if (!isValidOperation) {
-        return res.status(400).send({ error: 'Invalid updates!' });
-    }
-
-    try {
-        const user = await User.findById(req.params.id);
-
-        if (!user) {
-            return res.status(404).send();
-        }
-
-        updates.forEach(update => user[update] = req.body[update]);
-        await user.save();
-
-        res.send(user);
-    } catch (error) {
-        res.status(400).send(error);
-    }
+            user.name=name;
+            user.lastName=lastName;
+            user.email=email;
+            user.phone=phone;
+            user.password=passwordHash;
+                    
+    
+            await user.save()
+                    res.status(201).send(user);
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(error);
+        }    
 
     
 }
+export const deleteUser = async (req, res) => {
+   
+    try {
+    
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            return res.status(400).send("Usuario no encontrado");
+        }
+
+        user.status=false;
+        user.deleteDate=new Date();
+        await user.save();
+        res.status(201).send(user);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
+
+export const getUsers= async (req, res) => {
+    try {
+        
+        const user = await User.find();
+
+        res.status(201).send(user);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
 
 export const logout = (req, res)=>{
     res.cookie('token', "",{

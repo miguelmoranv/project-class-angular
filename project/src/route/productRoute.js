@@ -58,10 +58,6 @@ router.patch('/product', updateProduct);
     *    responses:
     *      '200':
     *        description: A successful response
-    *        content:
-    *          application/json:
-    *            schema:
-    *              $ref: '#/definitions/Product'
     */ 
 router.delete('/product/:id', deleteProduct);
 /**
@@ -71,7 +67,7 @@ router.delete('/product/:id', deleteProduct);
     *   description: The product managing API
     * /api/product:
     *  get:
-    *    summary: Update a product
+    *    summary: Get all products
     *    tags: [Products]
     *    responses:
     *      '200':

@@ -2,6 +2,8 @@ import express from 'express';
 import morgan from 'morgan';
 import homeRoute from './route/route.js';
 import productRoute from './route/productRoute.js';
+import userRoute from './route/userRoute.js';
+
 import swaggerApi from './api-docs.js';
 import cookieParser from "cookie-parser";
 import cors from 'cors';
@@ -19,6 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api',productRoute);
+app.use('/api',userRoute);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 export default app;

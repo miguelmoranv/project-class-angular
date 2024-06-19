@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Role from "./enum/Role.js";
 
 const userSchema = new mongoose.Schema({
     id: { type: String},
@@ -11,8 +10,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     status:{type: Boolean, required:true},
     creationDate:{type:Date},
-    role:{type: String,
-        enum: Object.values(Role),},
+    role:{type: String},
     deleteDate:{type:Date},
     idClient: { type: String},
 });

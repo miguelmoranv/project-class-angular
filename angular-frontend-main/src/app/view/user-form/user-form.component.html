@@ -1,0 +1,61 @@
+<mat-card>
+  <mat-card-title>Agregar Usuario</mat-card-title>
+  <mat-card-content class="scrollable-content">
+    <form [formGroup]="userForm" (ngSubmit)="save()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput id="username" formControlName="username" required>
+        <mat-error *ngIf="userForm.get('username')?.touched && userForm.get('username')?.invalid">
+          Username is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput id="name" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput id="lastName" formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput id="email" formControlName="email" type="email" required>
+        <mat-error *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+          <span *ngIf="userForm.get('email')?.errors?.['required']">Email is required.</span>
+          <span *ngIf="userForm.get('email')?.errors?.['email']">Invalid email address.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Phone</mat-label>
+        <input matInput id="phone" formControlName="phone" required>
+        <mat-error *ngIf="userForm.get('phone')?.touched && userForm.get('phone')?.invalid">
+          Phone is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput id="password" formControlName="password" type="password" required>
+        <mat-error *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid">
+          Password is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Role</mat-label>
+        <input matInput id="role" formControlName="role" required>
+        <mat-error *ngIf="userForm.get('role')?.touched && userForm.get('role')?.invalid">
+          Role is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>
