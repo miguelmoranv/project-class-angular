@@ -26,6 +26,7 @@ import { AddUserComponent } from './view/add-user/add-user.component';
 import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.component';
 import { MatCardModule } from '@angular/material/card';
 import { LoginComponent } from './view/login/login.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { LoginComponent } from './view/login/login.component';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

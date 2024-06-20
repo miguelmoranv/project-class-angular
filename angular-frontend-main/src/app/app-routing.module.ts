@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: 'product', component: ListaProductosComponent },
   { path: 'user', component: UserListComponent },
   { path: '',  component: LoginComponent }, // Ruta por defecto
-  { path: '**', redirectTo: '/' } // Redirección para rutas no encontradas
 ];
 
 @NgModule({
