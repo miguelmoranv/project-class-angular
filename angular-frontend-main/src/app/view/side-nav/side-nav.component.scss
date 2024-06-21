@@ -1,3 +1,4 @@
+/* Estilos generales */
 mat-toolbar {
   background-color: #8300e1;
   color: #ffffff;
@@ -12,16 +13,31 @@ mat-nav-list a {
   text-decoration: none;
 }
 
+.example-container {
+  height: 0%;
+}
+
 mat-nav-list a:hover {
   background-color: #e5e5e5;
   color: #333;
-}
-
-.example-container {
-  height: 0%;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
+/* Estilos específicos para dispositivos móviles */
+@media only screen and (max-width: 680px) {
+  .example-container {
+    height: 100%;
+  }
+  
+  /* No ocultar mat-sidenav-container en móviles si es utilizado */
+  mat-sidenav {
+    display: block;
+  }
+  
+  mat-sidenav-container {
+    background-color: transparent; /* Ajustar color si es necesario */
+  }
+}
